@@ -1,42 +1,56 @@
 import axios from 'axios';
-const text = '[[["MkEWBc","[[\"非常满意。\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]&';
+const text = '[[["MkEWBc","[[\"\\\"/high-offers\\\": {\\n    \\\"ho5\\\": \\\"每日奖励\\\",\\n    \\\"ho6\\\": \\\"按要求完成调查、浏览广告等任务即可获得奖励。\\\",\\n    \\\"ho7\\\": \\\"完成后可获得奖励\\\",\\n    \\\"d47\\\": \\\"任务包括：问卷调查、浏览广告、试用应用程序、下载等，按打开的页面要求完成即可赚取@_323_@\\\",\\n    \\\"d471\\\": \\\"注意：每个地区的用户看到的任务可能会不一样，请以页面实际要求为准！\\\",\\n    \\\"ho9\\\": \\\"去完成\\\",\\n    \\\"ho10\\\": \\\"赚取 @_1684_@\\\",\\n    \\\"ho11\\\": \\\"已完成\\\",\\n    \\\"re\\\": \\\"刷新\\\",\\n    \\\"ho12\\\": \\\"你已经完成了今天的奖励任务，请明天继续！\\\",\\n    \\\"ho13\\\": \\\"领取奖励\\\"\\n  }\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]';
 // [[["MkEWBc","[[\"非常满意。\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]
-
+console.log(encodeURIComponent(text));
 
 try {
   const response = await axios.post(
     'https://translate.google.com/_/TranslateWebserverUi/data/batchexecute',
-    'f.req=%5B%5B%5B%22MkEWBc%22%2C%22%5B%5B%5C%22%E9%9D%9E%E5%B8%B8%E6%BB%A1%E6%84%8F%E3%80%82%5C%22%2C%5C%22zh-CN%5C%22%2C%5C%22en%5C%22%2C1%5D%2C%5B%5D%5D%22%2Cnull%2C%22generic%22%5D%5D%5D&',
+    'f.req=' + encodeURIComponent(text),
     {
       params: {
         'rpcids': 'MkEWBc',
         'source-path': '/',
-        'f.sid': '-8985640002072474993',
+        'f.sid': '-793645597522159129',
         'bl': 'boq_translate-webserver_20250716.06_p0',
         'hl': 'zh-CN',
         'soc-app': '1',
         'soc-platform': '1',
         'soc-device': '1',
-        '_reqid': '2038840',
+        '_reqid': '1465440',
         'rt': 'c'
       },
       headers: {
-        'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.158", "Google Chrome";v="138.0.7204.158"',
-        'sec-ch-ua-platform': '"Windows"',
+        'accept': '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9',
+        'cache-control': 'no-cache',
+        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'pragma': 'no-cache',
+        'priority': 'u=1, i',
+        'referer': 'https://translate.google.com/',
         'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
-        'sec-ch-ua-bitness': '"64"',
-        'sec-ch-ua-model': '""',
-        'sec-ch-ua-mobile': '?0',
-        'X-Same-Domain': '1',
-        'sec-ch-ua-wow64': '?0',
-        'sec-ch-ua-form-factors': '"Desktop"',
-        'X-Goog-BatchExecute-Bgr': '[";S1W4VQ3QAAZq8xlESvNfuCFz5n2H5TAmADQBEArZ1Alwf_vzp3lLKGPaO-LnmDpRvahNrxGXoQ4SQ-dQcN0XYN22s-X3otphARQkLVzeHwAAACtPAAAAAnUBB2MAQWsojJERdsJp7f87acUWzFqVYwDAMVVbLxuE6Q_KmChlgjgXgdLOnIth0exky5Mx_H1lpH6D8qXvph2XLwpicxUohAM75kOPE61QQko41wn6sLh4GRp5JEt1HktiVlkulBDeIuYwgMeV2oSIw8135ITUrkG2uAWpB_wNbN0lOu8REzpEYAwGpxqDqAn02bLrHs75zMt3Nel9o1vCA-GCjkoYBaArK5DvxjYp86P90JKWjWP78O2kyvi7pdDAxKOiiMf-84mf-m8EzG9chgPk9AtK50BmeON3bKgEXy_yxIWvYeUBTgasL2QUNvRMKM_jCdy2ilA6-d_kJD0z_TjhR9OHZW76GrY1l2JHktZYFCAUD-rX1140YjmsoErE45LBVN_Hc3vPJtgjMYYMutLuy7SUJfrqOTx8u_xpkH9o-Gst0ajWqfydRaQNVL31NLXDOfwNDRWZ7T4fTY0MO1poNz7nKNS3RQF9K19J9mZJPpRsVgJC3PmVR0gamUMB14qS_KFAbe82CboBAkf7W5RCX3z0okr6jp7EkD0x1sIc1UXJO6ve4KD9zm4X6dO0AOrSWaUKKgF3LaBAeAYIPzRXQAQeCxG5kOJmzDB4EhL7YpuWHIICC-QupPfRX06PYWLA8FkiUiW9Plw3P3TLolnHxneI-5ZmNTrOfjLkH8ikeEKOXoD8dLV7Ni4K_o88Q3IYQtJSidH_sPyI6ufFI1-1Zi2iLXlNG1XzXNMghaZZfkZ2dS5VjX-W0zJhskScDRrG16VhR-jLaS75IdpAX7v3VONkrQYYfl-ufs410GUxeoEzq-n0i9yRnox1ENScMnaMeQFvB5QBX_wpFPIpsJsxU-4Y0-0SRd6nITbptLpG5LmpvT4N5mhy6sk6KImdAZP_w4RnbnUytc3IWSE1rRgutqa_YgCgNlZMkz4PW2tr-vjfTNRsCuL0a1Aj967xBeOEfk8oHS0S1rIAAG3TBcreCa6wBRO57cy1sB4lrhvHjxqiux7P2hY2HfO-8CZeB9-Xspm7mLQqiJUH2JHO8j_6E_KJ82KVGVDCV4EvtSQundC9puBNPbrgqffL9bC1QpYuaHzP2EI670dI1UNe5oIKijAVnbbxfa6g2FStynqKNDfQnDTarmU-5sxXU1fiVbF4y3TsIk85ITifYMYkMKDTH6u5ocYVr4pHsWi2sQnL2mk",null,null,8,null,null,null,0,"2"]',
         'sec-ch-ua-arch': '"x86"',
+        'sec-ch-ua-bitness': '"64"',
+        'sec-ch-ua-form-factors': '"Desktop"',
         'sec-ch-ua-full-version': '"138.0.7204.158"',
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'Referer': 'https://translate.google.com/',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-        'sec-ch-ua-platform-version': '"19.0.0"'
+        'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.158", "Google Chrome";v="138.0.7204.158"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-model': '""',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-ch-ua-platform-version': '"19.0.0"',
+        'sec-ch-ua-wow64': '?0',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+        'x-browser-channel': 'stable',
+        'x-browser-copyright': 'Copyright 2025 Google LLC. All rights reserved.',
+        'x-browser-validation': '6h3XF8YcD8syi2FF2BbuE2KllQo=',
+        'x-browser-year': '2025',
+        'x-client-data': 'CJe2yQEIpbbJAQipncoBCNGgygEI7e3KAQiWocsBCIWgzQEI/aXOAQji8M4BCKH7zgEI4PvOAQid/M4BCOj8zgEIhf3OAQiK/c4BCLr9zgEY4OLOARjp7c4BGND6zgE=',
+        'x-goog-batchexecute-bgr': '[";k424jdXQAAZq8xlESvNfx6zsSacVsrYmADQBEArZ1JWjHqePHOUHSYS_5pwSImBtXDUbQqTwFjNRJxvWLRjaeg-a8ZQxRw91ZQ0bymj9HwAAAEZPAAAAAXUBB2MAQcF-GNNdf21TzfKcOL5zh_nK2DFKOKnGK39nKnl0xgejGGDXMKq3fGT0UC2c_pve9fpa8EgLYHb8JC8r4RhMsn4NhAMssHzeQb-m-fofXR9nVFfyrZuuL6MBkVQoHgeTRdx_FhLkpiR7pAsmhlVLEh2Aa-rsBcP5pX-pvuxwjXnAi-gYgjQILZ99Xmd3i1eDSjpeMqYvOp0-y75qyidp5W5uzFoM3Fe3o6V5jlXjNrhC14VcbMRRAH4nZanoH5gDgAn7kalBI_dw2Z4Z5MsHy7avAWkkGBvY94cH2zgy0TmqxX6WCRnJVx0188seMXh7149TWb97Nf2qNN4MLeprXYxS92iMvasdzq1TuzSzi5FJS4gko700GYWotZCMU1z4I87ekK421Hs2I0eTaPGraE9XY56-Sd-GEQn9oLTImxkkiy8WXyQfwMAQEqt4EQ67RRTKmUHaQdMb3aaUCOsivDASz9vdrFmJQByzSejusuYAjv6ioMSlYQFhpAHvsepEikIEmojbDrlNcFvifyBMZZnAPmRTwENXejDz9-01ay2LLMY2KC2Sekpr1ycpLZAM-8p_fC5vJjDtxYV27uQnBryjXwDJgLCD-HTDAYGdzL62tALsxzXQVYt4hvEWbryRp8yABpQC6vf8KyCTr3quNPFFE9Ztht8ua5tavC0eGrR680CZv40T6mByaO8SBI3hAo7VD7CCX7uXSESVboyBK0HD0jIxDD6k9cJiuzrX-XCjkYie8upR5mVvRHJwghoXE6CghRCm6iSjIGjN5pyv_GG3oze6urkcc23Upo773uiNyVxHbNqxkJ8WqL7N12jZShUtzEV-LxZxH-903pjK3Imx47DmIDojpD_-QJzVlEZnH2i1Svq5gVdNZbeVO5U7eIlZpZJJKl4dHt6guLhA5Qji4kB9KiX8QJ7HXHCqmAi6R89F39kFMcy-F8q4LpD-ntQGWKCay-G8KsuJO7WWAgH5c2-JfEHijCnE3k8kdtzzHtzOnFMkwst_0N7U8OqKlFgubkGzsooiSM2U5Wm9Cl68GSu9bwBdhz8ldgoizgmSSxWlouPDRB_OQqxUzl8Qj1AAay_R8IL0f7T2xO5v6X5uKeTn2VncJj9f5akV25-SSZVHHJ_qyDTx4Jo2j2MSjE_x9x_pMhslsUGZxwkVfiY",null,null,9,null,null,null,0,"2"]',
+        'x-same-domain': '1',
+        'cookie': 'OTZ=8160571_24_24__24_; AEC=AVh_V2j0O7cPbQitLpJ5YNndkylZZRQhaP1PLpbPxPsDnPFs0GQPsxA1jSE; NID=525=W4i6mYKFQl2kGL1as9OtVqbwcQK_Q1mhbwnncF--2QM9A5vm_WW6YW_eUZDBZFprw_A3qm8vGskrWkg_HqvypRSwXRPPflFwPqiu9lF_-KljufPc7OVsBLZwujghom3V-QLHQctppIOLDo7fn6x_GVyxshWXBbqyQulX7J1Uzy24mblq2ODyJkYG_95F4Ypn4F4ESYfmDPBEZfNWLqFwol4qKwh8sX5WaRRyLkl99lKPL_kXqx6XKkXzpSKFvv4Q3hJO3g'
       }
     }
   );
