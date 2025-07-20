@@ -1,13 +1,63 @@
 import axios from 'axios';
-const text = '[[["MkEWBc","[[\"\\\"/high-offers\\\": {\\n    \\\"ho5\\\": \\\"每日奖励\\\",\\n    \\\"ho6\\\": \\\"按要求完成调查、浏览广告等任务即可获得奖励。\\\",\\n    \\\"ho7\\\": \\\"完成后可获得奖励\\\",\\n    \\\"d47\\\": \\\"任务包括：问卷调查、浏览广告、试用应用程序、下载等，按打开的页面要求完成即可赚取@_323_@\\\",\\n    \\\"d471\\\": \\\"注意：每个地区的用户看到的任务可能会不一样，请以页面实际要求为准！\\\",\\n    \\\"ho9\\\": \\\"去完成\\\",\\n    \\\"ho10\\\": \\\"赚取 @_1684_@\\\",\\n    \\\"ho11\\\": \\\"已完成\\\",\\n    \\\"re\\\": \\\"刷新\\\",\\n    \\\"ho12\\\": \\\"你已经完成了今天的奖励任务，请明天继续！\\\",\\n    \\\"ho13\\\": \\\"领取奖励\\\"\\n  }\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+const obj1 = {
+  T: {
+    "oG": null
+  }
+}
+const obj = {
+  "generic": {
+    "Qk": {
+      "Qk": "MkEWBc",
+      "Op": null,
+      "oK": null,
+      "pW": "/DataService.GetTranslation",
+      "Pv": [
+        {
+          "key": {
+            "j": "frontendMethodType"
+          },
+          "value": true
+        },
+        {
+          "key": {
+            "j": "unobfuscatedRpcId"
+          },
+          "value": "/DataService.GetTranslation"
+        }
+      ]
+    },
+    "j": [
+      [
+        "你hao",
+        "zh-CN",
+        "en",
+        1
+      ],
+      []
+    ],
+    "sideChannel": {},
+    "vc": {
+      "j": {
+        "frontendMethodType": true,
+        "unobfuscatedRpcId": "/DataService.GetTranslation"
+      }
+    }
+  }
+}
+// console.log(text1);
+const text = `[[["MkEWBc","[[\\"你好\\",\\"zh-CN\\",\\"en\\",1],[]]",null,"generic"]]]`;
+console.log(text);
 // [[["MkEWBc","[[\"非常满意。\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]
-console.log(encodeURIComponent(text));
+// console.log(encodeURIComponent(text));
 
 try {
+  const agent = new HttpsProxyAgent('http://127.0.0.1:10809');
   const response = await axios.post(
     'https://translate.google.com/_/TranslateWebserverUi/data/batchexecute',
     'f.req=' + encodeURIComponent(text),
     {
+      httpsAgent: agent,
       params: {
         'rpcids': 'MkEWBc',
         'source-path': '/',
