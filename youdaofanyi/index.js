@@ -1,7 +1,7 @@
 import axios from 'axios';
 import crypto from 'crypto';
 import util from 'util';
-// 需要解密的：sign
+// 需要解密的:sign
 // aesKey、aesIv从key?keyid的接口获取
 import getKeyId from './keyid.js';
 
@@ -19,16 +19,16 @@ async function translate(text) {
   }
 
   const keyIds = await getKeyId();
-  console.log('keyIds', keyIds);
+  // console.log('keyIds', keyIds);
   const sign = S(a, keyIds.secretKey);
-  console.log('sign', sign);
+  // console.log('sign', sign);
 
   const response = await axios.post(
     'https://dict.youdao.com/webtranslate',
     new URLSearchParams({
       'i': text,
-      'from': 'zh-CHS',
-      'to': 'en',
+      'from': 'en',
+      'to': 'zh-CHS',
       'useTerm': 'false',
       'domain': '0',
       'dictResult': 'true',
@@ -39,7 +39,7 @@ async function translate(text) {
       'appVersion': '1.0.0',
       'vendor': 'web',
       'pointParam': 'client,mysticTime,product',
-      'mysticTime': a,
+      'mysticTime': a + '',
       'keyfrom': 'fanyi.web',
       'mid': '1',
       'screen': '1',
@@ -70,7 +70,7 @@ async function translate(text) {
       }
     }
   );
-  console.log('response.data', response.data);
+  // console.log('response.data', response.data);
   const O = (e, t, a) => {
     // console.log('e', e);
     // console.log('t', t);
@@ -94,8 +94,18 @@ async function translate(text) {
   const result = O(response.data, keyIds.aesKey, keyIds.aesIv);
   // console.log('result', result);
   const result2 = JSON.parse(result);
-  console.log(util.inspect(result2.translateResult, { depth: null, showHidden: true, colors: true }));
-  return result2;
+  // console.log(util.inspect(result2.translateResult[0].at(-1), { depth: null, showHidden: true, colors: true }));
+  return result2.translateResult[0];
 }
+// const result = await translate('hello');
+// console.log(result);
+const arr = [
+  'Someone just clicked your shared link. Congratulations, you got {dianji}, which has been transferred to your balance.',
+  'Warning! We suspect that you are maliciously registering in bulk. Continuing to cheat will result in your account being locked!'
+]
 
-await translate('首先邀请您的朋友、家人或关注者。您可以通过短信发送共享链接或在社交媒体上共享。最好的方法是与您的朋友或家人分享，并与他们一起轻松赚钱。');
+const result = await Promise.all(arr.map(async (item) => {
+  const result1 = await translate(item);
+  return result1.map(item => item.tgt).join('');
+}));
+console.log(result);
