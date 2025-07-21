@@ -1,13 +1,63 @@
 import axios from 'axios';
-const text = '[[["MkEWBc","[[\\"你好\\",\\"zh-CN\\",\\"en\\",1],[]]",null,"generic"]]]';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+const obj1 = {
+  T: {
+    "oG": null
+  }
+}
+const obj = {
+  "generic": {
+    "Qk": {
+      "Qk": "MkEWBc",
+      "Op": null,
+      "oK": null,
+      "pW": "/DataService.GetTranslation",
+      "Pv": [
+        {
+          "key": {
+            "j": "frontendMethodType"
+          },
+          "value": true
+        },
+        {
+          "key": {
+            "j": "unobfuscatedRpcId"
+          },
+          "value": "/DataService.GetTranslation"
+        }
+      ]
+    },
+    "j": [
+      [
+        "你hao",
+        "zh-CN",
+        "en",
+        1
+      ],
+      []
+    ],
+    "sideChannel": {},
+    "vc": {
+      "j": {
+        "frontendMethodType": true,
+        "unobfuscatedRpcId": "/DataService.GetTranslation"
+      }
+    }
+  }
+}
+// console.log(text1);
+const text = `[[["MkEWBc","[[\\"你好\\",\\"zh-CN\\",\\"en\\",1],[]]",null,"generic"]]]`;
+console.log(text);
 // [[["MkEWBc","[[\"非常满意。\",\"zh-CN\",\"en\",1],[]]",null,"generic"]]]
-console.log(encodeURIComponent(text));
+// console.log(encodeURIComponent(text));
 
 try {
+  const agent = new HttpsProxyAgent('http://127.0.0.1:10809');
   const response = await axios.post(
     'https://translate.google.com/_/TranslateWebserverUi/data/batchexecute',
     'f.req=' + encodeURIComponent(text),
     {
+      httpsAgent: agent,
       params: {
         'rpcids': 'MkEWBc',
         'source-path': '/',
