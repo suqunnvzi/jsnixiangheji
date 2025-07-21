@@ -237,7 +237,7 @@ const uoObj = uo(t, keyObj);
     "subMessage",
     "signed"
   ]
-  const Ri = String.fromCharCode
+  const Ri = String.fromCharCode.bind(String)
   const Oi = function (t) {
     return t.replace(/[^A-Za-z0-9\+\/]/g, "")
   }
