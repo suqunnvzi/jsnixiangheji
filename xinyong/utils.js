@@ -1,4 +1,4 @@
-class T {
+export const T = class T {
   constructor() { }
 
   static R(t, e) {
@@ -208,5 +208,3 @@ class T {
   }
 }
 
-// 导出模块
-export default T;
