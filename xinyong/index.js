@@ -98,6 +98,26 @@ const Zi = function (t) {
   }
   return "".concat(Yi(t.slice(0, t.length / 2)), ",").concat(Yi(t.slice(t.length / 2)))
 }
+var kr = ls
+var Vr = {
+  generateKeyPairHex: kr.sm2.generateKeyPairHex,
+  doEncrypt: kr.sm2.doEncrypt,
+  doDecrypt: function(t, e, r) {
+      return void 0 === r && (r = 0),
+      t = t.toLowerCase().replace(/^04/, ""),
+      kr.sm2.doDecrypt(t, e, r)
+  },
+  signature: function(t, e, r, n) {
+      return kr.sm2.doSignature(t, e, {
+          hash: !0,
+          publicKey: r,
+          userId: n
+      })
+  },
+  doSignature: kr.sm2.doSignature,
+  doVerifySignature: kr.sm2.doVerifySignature,
+  getPoint: kr.sm2.getPoint
+}
 const uo = function (t, e) {
   var r = Object.assign({}, t)
     , n = {
@@ -131,10 +151,10 @@ const uo = function (t, e) {
     , o = "";
   switch (n.signType) {
     case P.SIGN_TYPE.SM2:
-      o = Zi(o = ls.sm2.doSignature(a, e.appSignPrivateKey, e.appSignPublicKey, e.appId));
+      o = Zi(o = Vr.signature(a, e.appSignPrivateKey, e.appSignPublicKey, e.appId));
       break;
     case P.SIGN_TYPE.RSA2:
-      o = so.doSignature(a, e.appSignPrivateKey, so.alg.SHA256withRSA)
+      o = Vr.signature(a, e.appSignPrivateKey, so.alg.SHA256withRSA)
   }
   return n.sign = o,
     n.bizContent && delete n.bizContent,
@@ -190,6 +210,6 @@ try {
   });
   console.log(response.data);
 } catch (error) {
-  console.log(error.message);
+  console.log(error);
   
 }
