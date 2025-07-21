@@ -13,8 +13,10 @@
     "axios": "^1.10.0",
     "crypto-js": "^4.2.0",
     "https-proxy-agent": "^7.0.6",
+    "jsbn": "^1.1.0",
     "jsencrypt": "^3.3.2",
     "node-rsa": "^1.1.1",
-    "pako": "^2.1.0"
+    "pako": "^2.1.0",
+    "sm-crypto": "^0.3.13"
   }
 }
