@@ -176,8 +176,8 @@ const t = {
   },
   "params": {
     "param": "",
-    "page": 2,
-    "size": 10
+    "page": 1,
+    "size": 2
   },
   data: void 0
 }
@@ -193,12 +193,10 @@ const keyObj = {
 const uoObj = uo(t, keyObj);
 // console.log(uoObj);
 (async () => {
-
   const getXinyong = async () => {
     try {
-      const response = await axios.get('https://credit.hd.gov.cn/zx_website/website/sgs/xzxkfr', {
-        params: uoObj.params,
-        responseType: 'arraybuffer',
+      const response = await fetch('https://credit.hd.gov.cn/zx_website/website/sgs/xzxkfr?' + new URLSearchParams(uoObj.params), {
+        method: 'GET',
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -215,13 +213,12 @@ const uoObj = uo(t, keyObj);
           'sec-ch-ua-mobile': '?0',
           'sec-ch-ua-platform': '"Windows"',
           'x-gateway-body': 'blob',
-          // 'Cookie': '_gscu_2016493642=53083840vq4mp286; _gscbrs_2016493642=1; _gscs_2016493642=5308384085grvi86|pv:1'
-        }
+          'Cookie': '_gscu_2016493642=53083840vq4mp286; _gscbrs_2016493642=1; _gscs_2016493642=5308384085grvi86|pv:1'
+        },
       });
-      // console.log(response.data);
-      return response;
+      const arrayBuffer = await response.arrayBuffer();
+      return { data: arrayBuffer, headers: Object.fromEntries(response.headers.entries()), status: response.status, statusText: response.statusText, config: {} };
     } catch (error) {
-      // console.log(error.message);
 
     }
   }
@@ -256,7 +253,7 @@ const uoObj = uo(t, keyObj);
     }
     )))
   }
-  
+
   const Di = new TextDecoder("utf-8", {
     fatal: false,
     ignoreBOM: false
@@ -320,7 +317,7 @@ const uoObj = uo(t, keyObj);
     return [!1, null]
   }
   var oo = function (t, e) {
-    var r = t.data.buffer
+    var r = t.data
       , n = new DataView(r)
       , i = new Uint8Array(r)
       , s = {}
@@ -365,7 +362,9 @@ const uoObj = uo(t, keyObj);
         })
       }))
   }
-  console.log(typeof Buffer.from(res.data));
-  const result = await oo(res, keyObj);
+  const obj = {
+    ...res
+  }
+  const result = await oo(obj, keyObj);
   console.log(JSON.parse(result.data.body));
 })()
