@@ -46,10 +46,10 @@ try {
       'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"',
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Windows"',
-      // 'Cookie': 'OUTFOX_SEARCH_USER_ID=1393030700@117.154.101.13; OUTFOX_SEARCH_USER_ID_NCOO=2082243063.4071777; _uetsid=09c297a0625011f0acffc7e11da625b9; _uetvid=09c29330625011f0a56c07a3f3d1ce3f; DICT_DOCTRANS_SESSION_ID=MTZlNzA2ZjAtM2QwMC00Y2RjLWJmZTgtMjkyZThlYTVjZTRm'
+      'Cookie': 'OUTFOX_SEARCH_USER_ID=1393030700@117.154.101.13; OUTFOX_SEARCH_USER_ID_NCOO=2082243063.4071777; _uetsid=09c297a0625011f0acffc7e11da625b9; _uetvid=09c29330625011f0a56c07a3f3d1ce3f; DICT_DOCTRANS_SESSION_ID=MTZlNzA2ZjAtM2QwMC00Y2RjLWJmZTgtMjkyZThlYTVjZTRm'
     }
   });
-  // console.log(response.data);
+  console.log(response.data);
   return response.data.data;
 } catch (error) {
     console.log(error.message);
