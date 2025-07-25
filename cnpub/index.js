@@ -1,9 +1,11 @@
+// https://cnpub.com.cn/information.html#/search?nav=1
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
+import crypto from 'crypto';
 const e = {
   "newsType": 1,
-  "pageNum": 2,
-  "pageSize": 10,
+  "pageNum": 3,
+  "pageSize": 1,
   "title": ""
 }
 const s = CryptoJS
@@ -17,6 +19,15 @@ const o = (e, t = "16weizifuchuan16", i = "1suibianshurude6") => {
     padding: s["pad"].Pkcs7
   });
   return n.ciphertext.toString()
+},r = (e, t="16weizifuchuan16", i="1suibianshurude6") => {
+  const a = s["enc"].Utf8.parse(t)
+    , o = s["enc"].Utf8.parse(i)
+    , r = s["AES"].decrypt(s["format"].Hex.parse(e), a, {
+      iv: o,
+      mode: s["mode"].CBC,
+      padding: s["pad"].Pkcs7
+  });
+  return s["enc"].Utf8.stringify(r).toString()
 }
 const data = o(e)
 console.log(data)
@@ -39,19 +50,8 @@ fetch("https://cnpub.com.cn/prod-api/api/index/newsList", {
   "body": data,
   "method": "POST"
 }).then(async res => {
-  const json = await res.text();
-  // console.log(json);
-  const r = (e, t = "16weizifuchuan16", i = "1suibianshurude6") => {
-    const a = s["enc"].Utf8.parse(t)
-      , o = s["enc"].Utf8.parse(i)
-      , r = s["AES"].decrypt(s["format"].Hex.parse(e), a, {
-        iv: o,
-        mode: s["mode"].CBC,
-        padding: s["pad"].Pkcs7
-      });
-    return s["enc"].Utf8.stringify(r).toString()
-  }
-  const data = r(json)
-  console.log(data);
+  const text = await res.text();
+  console.log(r(JSON.parse(text)));
+  
 })
 
