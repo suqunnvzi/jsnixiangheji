@@ -15,9 +15,12 @@
     "hash.js": "^1.1.7",
     "https-proxy-agent": "^7.0.6",
     "jsbn": "^1.1.0",
+    "jsdom": "^26.1.0",
     "jsencrypt": "^3.3.2",
     "node-rsa": "^1.1.1",
     "pako": "^2.1.0",
-    "sm-crypto": "^0.3.13"
+    "qs": "^6.14.0",
+    "sm-crypto": "^0.3.13",
+    "vm": "^0.1.0"
   }
 }
