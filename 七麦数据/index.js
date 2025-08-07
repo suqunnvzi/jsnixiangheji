@@ -1,4 +1,5 @@
 import axios from 'axios';
+import util from 'util'
 const t = {
   "url": "/indexV2/getIndexRank",
   "headers": {
@@ -63,4 +64,4 @@ const response = await axios.get('https://api.qimai.cn/indexV2/getIndexRank', {
     'Cookie': 'qm_check=A1sdRUIQChtxen8pI0dAOTQ+GRdgUV1VW1ZFND9dTUlVAAICEGpVRlEAFUdASAFKBQcCBgAJchFFIg4aHRoOBnMDARlGR2dQOVdICAolAGgCHBl0B3xUV05KVFsZXVJRWxsKFghJVktYVElWBRVP; PHPSESSID=87kft4eadbmlknup07gld7ph4l; gr_user_id=8524d7f5-72f5-48db-a48e-88f226b8aafb; ada35577182650f1_gr_session_id=36489440-6380-4f69-9c2d-e4a139e860a5; ada35577182650f1_gr_session_id_sent_vst=36489440-6380-4f69-9c2d-e4a139e860a5; synct=1753689883.040; syncd=5286'
   }
 });
-console.log(response.data.data)
+console.log(util.inspect(response.data.data, {showHidden: true, depth: null}))
